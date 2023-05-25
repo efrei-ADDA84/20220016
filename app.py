@@ -4,7 +4,7 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-@app.route('/weather', methods=['GET'])
+@app.route('/', methods=['GET'])
 def get_weather():
     API_KEY = os.environ.get('API_KEY')
     lat = request.args.get('lat')
