@@ -36,4 +36,4 @@ jobs:
             name: "20220016"
             location: 'france central'
             environment-variables:
-              API_KEY = ${{ secrets.API_KEY }}
+              API_KEY=${{ secrets.API_KEY }}
