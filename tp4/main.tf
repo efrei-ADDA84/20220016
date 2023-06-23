@@ -23,17 +23,9 @@ data "azurerm_public_ip" "tp4" {
   resource_group_name = data.azurerm_resource_group.tp4.name
 }
 
-resource "azurerm_network_interface" "tp4" {
+data "azurerm_network_interface" "tp4" {
   name                = "nic-sarah"
-  location            = data.azurerm_resource_group.tp4.location
   resource_group_name = data.azurerm_resource_group.tp4.name
-
-  ip_configuration {
-    name                          = "internal"
-    subnet_id                     = data.azurerm_subnet.tp4.id
-    private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = data.azurerm_public_ip.tp4.id
-  }
 }
 
 resource "azurerm_linux_virtual_machine" "tp4" {
@@ -61,6 +53,6 @@ resource "azurerm_linux_virtual_machine" "tp4" {
   }
 
   network_interface_ids = [
-    azurerm_network_interface.tp4.id,
+    data.azurerm_network_interface.tp4.id,
   ]
 }
